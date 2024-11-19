@@ -1,5 +1,6 @@
 package com.example.mp3android;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     Button play, pause;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this,R.raw.twistedrock);
 
         play = (Button)findViewById(R.id.play);
-        pause = (Button)findViewById(R.id.pause);
+        pause = (Button)findViewById(R.id.forward);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override

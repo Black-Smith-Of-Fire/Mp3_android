@@ -3,18 +3,21 @@
 
     <item
         android:id="@+id/home"
+        android:icon="@drawable/home_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="home"/>
 
     <item
         android:id="@+id/playlist"
+        android:icon="@drawable/playlist_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Playlist"/>
 
     <item
         android:id="@+id/settings"
+        android:icon="@drawable/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Settings"/>

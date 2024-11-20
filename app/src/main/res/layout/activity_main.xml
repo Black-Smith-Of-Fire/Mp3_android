@@ -13,14 +13,13 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         app:menu="@menu/bottom_navigation"
-        android:itemPaddingBottom="10dp"
-        android:layout_height="56dp"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

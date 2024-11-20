@@ -14,8 +14,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer mediaPlayer;
-    Button play, pause;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,30 +22,5 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        mediaPlayer = MediaPlayer.create(this,R.raw.twistedrock);
-
-        play = (Button)findViewById(R.id.play);
-        pause = (Button)findViewById(R.id.forward);
-
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.start();
-            }
-        });
-
-        pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.pause();
-            }
-        });
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
 }

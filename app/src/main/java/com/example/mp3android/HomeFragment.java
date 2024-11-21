@@ -47,6 +47,14 @@ public class HomeFragment extends Fragment {
         it.add(new Item(R.drawable.blacksmith));
         it.add(new Item(R.drawable.blacksmith));
         it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
         return it;
     }
 }

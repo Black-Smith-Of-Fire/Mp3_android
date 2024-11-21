@@ -11,9 +11,11 @@ import java.util.List;
 
 public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
 
+    private final ArtistInterface artistInterface;
     private List<Item> items;
 
-    public ArtistsAdapter(List<Item> items) {
+    public ArtistsAdapter(ArtistInterface artistInterface, List<Item> items) {
+        this.artistInterface = artistInterface;
         this.items = items;
     }
 

@@ -6,6 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_edit_box"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

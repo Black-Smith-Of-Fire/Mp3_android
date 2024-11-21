@@ -4,14 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,7 +18,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<Item> items;
-    private MyAdapter adapter;
+    private ArtistsAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,7 +30,7 @@ public class HomeFragment extends Fragment {
         //Recycler view
         recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        adapter = new MyAdapter(items);
+        adapter = new ArtistsAdapter(items);
         recyclerView.setAdapter(adapter);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),3);

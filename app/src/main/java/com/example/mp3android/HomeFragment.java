@@ -20,6 +20,7 @@ public class HomeFragment extends Fragment implements ArtistInterface{
     private RecyclerView recyclerView;
     private List<Item> items;
     private ArtistsAdapter adapter;
+    List<Item> it = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +42,6 @@ public class HomeFragment extends Fragment implements ArtistInterface{
 
     private List<Item> itemList() {
 
-        List<Item> it = new ArrayList<>();
         it.add(new Item(R.drawable.blacksmith));
         it.add(new Item(R.drawable.blacksmith));
         it.add(new Item(R.drawable.blacksmith));

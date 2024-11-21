@@ -3,7 +3,7 @@ package com.example.mp3android;
 public class Item {
     int image;
 
-    public Item(String name, int image) {
+    public Item(int image) {
         this.image = image;
     }
 

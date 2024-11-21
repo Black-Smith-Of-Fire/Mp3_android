@@ -1,6 +1,5 @@
 package com.example.mp3android;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.artists_view, parent,false);
         return new MyViewHolder(itemView);
     }
 

@@ -12,11 +12,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:cardCornerRadius="50dp">
-        <ImageView
-            android:id="@+id/imageview"
-            android:layout_width="148dp"
-            android:layout_height="148dp"
-            android:scaleType="centerCrop"/>
+                <ImageView
+                    android:id="@+id/imageview"
+                    android:layout_width="148dp"
+                    android:layout_height="148dp"
+                    android:scaleType="centerCrop"/>
         </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

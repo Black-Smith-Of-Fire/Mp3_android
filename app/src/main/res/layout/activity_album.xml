@@ -7,4 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".Album">
 
+    <TextView
+        android:id="@+id/lol"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Hi bois"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

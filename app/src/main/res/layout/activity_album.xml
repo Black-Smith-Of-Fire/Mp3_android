@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Album">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/album"
+    tools:context=".HomeFragment">
 
-    <TextView
-        android:id="@+id/lol"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hi bois"/>
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/artistProfile"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/round_edit_box"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="Search for artists"
+            android:layout_marginTop="30dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/songList"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="60dp"/>
+    </LinearLayout>
+</FrameLayout>

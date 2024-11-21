@@ -35,13 +35,15 @@ public class HomeFragment extends Fragment {
         adapter = new MyAdapter(items);
         recyclerView.setAdapter(adapter);
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return rootView;
     }
 
-    private List<Item> itemList(){
+    private List<Item> itemList() {
 
-        List<Item> items = new ArrayList<Item>();
-        items.add(new Item(R.drawable.blacksmith));
-        return items;
+        List<Item> it = new ArrayList<>();
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        return it;
     }
 }

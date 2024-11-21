@@ -12,10 +12,10 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    private List<Item> items;
+    private List<Item> items1;
 
     public MyAdapter( List<Item> items) {
-        this.items = items;
+        this.items1 = items;
     }
 
     @NonNull
@@ -27,11 +27,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.imageView.setImageResource(items.get(position).getImage());
+        holder.imageView.setImageResource(items1.get(position).getImage());
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items1.size();
     }
 }

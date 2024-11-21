@@ -18,7 +18,10 @@ public class ArtistsViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if (artistInterface != null) {
-
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        artistInterface.onItemClick(pos);
+                    }
                 }
             }
         });

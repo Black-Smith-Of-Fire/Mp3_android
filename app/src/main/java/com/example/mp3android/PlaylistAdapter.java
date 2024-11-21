@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class PlaylistAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
+public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistViewHolder> {
 
     private List<Item> items;
 
@@ -25,7 +25,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ArtistsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlaylistViewHolder holder, int position) {
         holder.imageView.setImageResource(items.get(position).getImage());
     }
 

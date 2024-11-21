@@ -3,11 +3,13 @@ package com.example.mp3android;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +33,11 @@ public class HomeFragment extends Fragment {
         //Recycler view
         recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MyAdapter(items);
         recyclerView.setAdapter(adapter);
 
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),3);
+        recyclerView.setLayoutManager(layoutManager);
         return rootView;
     }
 

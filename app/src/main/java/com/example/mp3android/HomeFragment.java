@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ArtistInterface{
 
     private RecyclerView recyclerView;
     private List<Item> items;
@@ -53,5 +53,10 @@ public class HomeFragment extends Fragment {
         it.add(new Item(R.drawable.blacksmith));
         it.add(new Item(R.drawable.blacksmith));
         return it;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mp3android;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,7 +31,7 @@ public class HomeFragment extends Fragment implements ArtistInterface{
         //Recycler view
         recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        adapter = new ArtistsAdapter(items);
+        adapter = new ArtistsAdapter(items,this);
         recyclerView.setAdapter(adapter);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),3);
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment implements ArtistInterface{
 
     @Override
     public void onItemClick(int position) {
-
+        Intent intent = new Intent(HomeFragment.this.getActivity(),Album.class);
+        startActivity(intent);
     }
 }

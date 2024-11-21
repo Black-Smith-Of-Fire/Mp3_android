@@ -12,8 +12,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.media.MediaPlayer;
 import android.view.MenuItem;
@@ -30,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private FrameLayout frameLayout;
-    private RecyclerView recyclerView;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,17 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fragmentChanger(new HomeFragment(), true);
-
-
-        //Recycler view
-        List<Item> items = new ArrayList<Item>();
-        items.add(new Item(R.drawable.blacksmith));
-        items.add(new Item(R.drawable.blacksmith));
-        items.add(new Item(R.drawable.blacksmith));
-        recyclerView = findViewById(R.id.recyclerView);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdapter(getApplicationContext(),items));
 
     }
 

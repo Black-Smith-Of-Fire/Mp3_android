@@ -14,7 +14,7 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
     private final ArtistInterface artistInterface;
     private List<Item> items;
 
-    public ArtistsAdapter(ArtistInterface artistInterface, List<Item> items) {
+    public ArtistsAdapter(List<Item> items, ArtistInterface artistInterface) {
         this.artistInterface = artistInterface;
         this.items = items;
     }
@@ -23,7 +23,7 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
     @Override
     public ArtistsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.artists_view, parent,false);
-        return new ArtistsViewHolder(itemView);
+        return new ArtistsViewHolder(itemView, artistInterface);
     }
 
     @Override

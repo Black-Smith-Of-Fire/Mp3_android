@@ -10,8 +10,17 @@ public class ArtistsViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView;
 
-    public ArtistsViewHolder(@NonNull View itemView) {
+    public ArtistsViewHolder(@NonNull View itemView, ArtistInterface artistInterface) {
         super(itemView);
         imageView = itemView.findViewById(R.id.imageview);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (artistInterface != null) {
+
+                }
+            }
+        });
     }
 }

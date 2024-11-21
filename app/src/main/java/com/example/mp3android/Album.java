@@ -1,30 +1,61 @@
 package com.example.mp3android;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-public class Album extends AppCompatActivity {
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
 
-    TextView lol ;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Album extends Fragment {
+
+    private RecyclerView recyclerView;
+    private List<Item> items;
+    private AlbumAdapter adapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_album);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        lol = findViewById(R.id.lol);
+        View rootView = inflater.inflate(R.layout.fragment_home,container,false);
 
+        items = itemList();
+        //Recycler view
+        recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        adapter = new AlbumAdapter(items);
+        recyclerView.setAdapter(adapter);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),3);
+        recyclerView.setLayoutManager(layoutManager);
+        return rootView;
+    }
+
+    private List<Item> itemList() {
+
+        List<Item> it = new ArrayList<>();
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith));
+        return it;
     }
 }

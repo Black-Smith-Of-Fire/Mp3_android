@@ -1,4 +1,4 @@
-package com.example.mp3android;
+package com.example.mp3android.playlist;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mp3android.Item;
+import com.example.mp3android.playlist.PlaylistViewHolder;
+import com.example.mp3android.R;
 
 import java.util.List;
 

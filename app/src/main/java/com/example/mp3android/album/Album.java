@@ -44,17 +44,17 @@ public class Album extends Fragment {
     private List<Item> itemList() {
 
         List<Item> it = new ArrayList<>();
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
-        it.add(new Item(R.drawable.blacksmith));
+        it.add(new Item(R.drawable.blacksmith,"Chris"));
+        it.add(new Item(R.drawable.blacksmith,"Mj"));
+        it.add(new Item(R.drawable.blacksmith,"Indila"));
+        it.add(new Item(R.drawable.blacksmith,"Connor"));
+        it.add(new Item(R.drawable.blacksmith,"Torbuk"));
+        it.add(new Item(R.drawable.blacksmith,"Sheldon"));
+        it.add(new Item(R.drawable.blacksmith,"Golden boy"));
+        it.add(new Item(R.drawable.blacksmith,"Cassie"));
+        it.add(new Item(R.drawable.blacksmith,"McDonald"));
+        it.add(new Item(R.drawable.blacksmith,"Carla"));
+        it.add(new Item(R.drawable.blacksmith,"Jaimie"));
         return it;
     }
 }

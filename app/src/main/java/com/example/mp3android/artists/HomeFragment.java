@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mp3android.Item;
 import com.example.mp3android.R;
+import com.example.mp3android.album.AlbumActivity;
 import com.example.mp3android.artists.ArtistInterface;
 import com.example.mp3android.artists.ArtistsAdapter;
+import com.example.mp3android.album.AlbumActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +65,7 @@ public class HomeFragment extends Fragment implements ArtistInterface {
 
     @Override
     public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), AlbumActivity.class);
+        startActivity(intent);
     }
 }

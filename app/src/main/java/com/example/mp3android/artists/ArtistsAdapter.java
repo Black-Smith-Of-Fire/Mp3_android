@@ -16,10 +16,12 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
 
     private final ArtistInterface artistInterface;
     private List<Item> items;
+    private List<Item> names;
 
     public ArtistsAdapter(List<Item> items, ArtistInterface artistInterface) {
         this.artistInterface = artistInterface;
         this.items = items;
+        this.names = names;
     }
 
     @NonNull
@@ -32,6 +34,7 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ArtistsViewHolder holder, int position) {
         holder.imageView.setImageResource(items.get(position).getImage());
+        holder.nameView.setText(items.get(position).getName());
     }
 
     @Override

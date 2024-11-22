@@ -1,11 +1,22 @@
 package com.example.mp3android;
 
 public class Item {
+    String name;
     int image;
 
-    public Item(int image) {
+    public Item(int image, String name) {
         this.image = image;
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public int getImage() {
         return image;

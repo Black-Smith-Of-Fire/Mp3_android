@@ -10,15 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mp3android.Item;
 import com.example.mp3android.album.AlbumViewHolder;
 import com.example.mp3android.R;
+import com.example.mp3android.artists.ArtistInterface;
 
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumViewHolder> {
 
+    private final ArtistInterface artistInterface;
     private List<Item> items;
     private List<Item> names;
 
-    public AlbumAdapter(List<Item> items) {
+    public AlbumAdapter(List<Item> items,ArtistInterface artistInterface) {
+        this.artistInterface = artistInterface;
         this.items = items;
         this.names = names;
     }
@@ -27,7 +30,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumViewHolder> {
     @Override
     public AlbumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.songlist_view, parent,false);
-        return new AlbumViewHolder(itemView);
+        return new AlbumViewHolder(itemView,artistInterface);
     }
 
     @Override

@@ -20,11 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mp3android.Item;
 import com.example.mp3android.R;
+import com.example.mp3android.player.PlayerActivity;
+import com.example.mp3android.artists.ArtistInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumActivity extends AppCompatActivity implements AlbumInterface{
+public class AlbumActivity extends AppCompatActivity implements ArtistInterface{
 
     private RecyclerView recyclerView;
     private List<Item> items;
@@ -37,7 +39,7 @@ public class AlbumActivity extends AppCompatActivity implements AlbumInterface{
 
         items = itemList();
         recyclerView = findViewById(R.id.albumRecycler);
-        adapter = new AlbumAdapter(items);
+        adapter = new AlbumAdapter(items,this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,7 +76,7 @@ public class AlbumActivity extends AppCompatActivity implements AlbumInterface{
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(this, AlbumActivity.class);
+        Intent intent = new Intent(AlbumActivity.this, PlayerActivity.class);
         startActivity(intent);
     }
 }

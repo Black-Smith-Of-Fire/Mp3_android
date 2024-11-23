@@ -1,3 +1,9 @@
+/*
+This is the class running the album of the artist
+uses the following xml : album activity,
+* */
+
+
 package com.example.mp3android.album;
 
 import android.os.Bundle;

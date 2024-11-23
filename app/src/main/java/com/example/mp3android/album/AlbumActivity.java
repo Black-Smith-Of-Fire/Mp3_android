@@ -1,42 +1,67 @@
 package com.example.mp3android.album;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mp3android.Item;
 import com.example.mp3android.R;
-import com.example.mp3android.artists.HomeFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlbumActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private List<Item> items;
+    private AlbumAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_album);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        items = itemList();
+        recyclerView = findViewById(R.id.albumRecycler);
+        adapter = new AlbumAdapter(items);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        items = itemList();
+
+//        EdgeToEdge.enable(this);
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+//            return insets;
+//        });
 
 
     }
 
-    private void fragmentChanger(Fragment fragment) {
+    private List<Item> itemList() {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frameLayout, fragment);
-        fragmentTransaction.commit();
+        List<Item> it = new ArrayList<>();
+        it.add(new Item(R.drawable.blacksmith,"Chris"));
+        it.add(new Item(R.drawable.blacksmith,"Jaime"));
+        it.add(new Item(R.drawable.blacksmith,"Sara"));
+        it.add(new Item(R.drawable.blacksmith,"Napoleon"));
+        it.add(new Item(R.drawable.blacksmith,"Dj malone"));
+        it.add(new Item(R.drawable.blacksmith,"Indila"));
+        it.add(new Item(R.drawable.blacksmith,"Terry"));
+        it.add(new Item(R.drawable.blacksmith,"Davis"));
+        it.add(new Item(R.drawable.blacksmith,"Burger king"));
+        it.add(new Item(R.drawable.blacksmith,"Shomw"));
+        it.add(new Item(R.drawable.blacksmith,"Carmine"));
+        return it;
     }
 }

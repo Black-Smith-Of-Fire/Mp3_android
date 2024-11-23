@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-This is the xml used by the album package. It uses the songlist template from the songlist_view.xml
--->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,18 +6,12 @@ This is the xml used by the album package. It uses the songlist template from th
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".album.AlbumActivity">
-
+    tools:context=".player.PlayerActivity">
     <TextView
+        android:id="@+id/playText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Morin"
+        android:text="Lol"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/albumRecycler"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="60dp"/>
 </LinearLayout>

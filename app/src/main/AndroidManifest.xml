@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Mp3Android"
         tools:targetApi="31">
         <activity
+            android:name=".player.PlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".album.AlbumActivity"
             android:exported="false" />
         <activity

@@ -1,11 +1,4 @@
-/*
-This is the class running the album of the artist
-uses the following xml : album activity,
-* */
-
-
-package com.example.mp3android.album;
-
+package com.example.mp3android.player;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,32 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mp3android.Item;
 import com.example.mp3android.R;
-import com.example.mp3android.player.PlayerActivity;
-import com.example.mp3android.artists.ArtistInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumActivity extends AppCompatActivity implements ArtistInterface{
-
-    private RecyclerView recyclerView;
-    private List<Item> items;
-    private AlbumAdapter adapter;
+public class PlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_album);
+        setContentView(R.layout.activity_player);
 
-        items = itemList();
-        recyclerView = findViewById(R.id.albumRecycler);
-        adapter = new AlbumAdapter(items,this);
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        items = itemList();
 
 //        EdgeToEdge.enable(this);
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -74,9 +52,4 @@ public class AlbumActivity extends AppCompatActivity implements ArtistInterface{
         return it;
     }
 
-    @Override
-    public void onItemClick(int position) {
-        Intent intent = new Intent(AlbumActivity.this, PlayerActivity.class);
-        startActivity(intent);
-    }
 }

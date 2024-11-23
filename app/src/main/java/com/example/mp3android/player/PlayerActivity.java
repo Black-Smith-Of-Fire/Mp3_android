@@ -19,24 +19,11 @@ import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private List<Item> items;
-    private PlayerAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_album);
+        setContentView(R.layout.activity_player);
 
-        items = itemList();
-        recyclerView = findViewById(R.id.albumRecycler);
-        adapter = new PlayerAdapter(items);
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        items = itemList();
 
 //        EdgeToEdge.enable(this);
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

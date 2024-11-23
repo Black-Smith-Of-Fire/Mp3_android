@@ -6,6 +6,7 @@ uses the following xml : album activity,
 
 package com.example.mp3android.album;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,7 +24,7 @@ import com.example.mp3android.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumActivity extends AppCompatActivity {
+public class AlbumActivity extends AppCompatActivity implements AlbumInterface{
 
     private RecyclerView recyclerView;
     private List<Item> items;
@@ -69,5 +70,11 @@ public class AlbumActivity extends AppCompatActivity {
         it.add(new Item(R.drawable.blacksmith,"Shomw"));
         it.add(new Item(R.drawable.blacksmith,"Carmine"));
         return it;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, AlbumActivity.class);
+        startActivity(intent);
     }
 }

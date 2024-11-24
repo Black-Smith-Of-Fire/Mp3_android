@@ -33,8 +33,10 @@ public class PlayerActivity extends AppCompatActivity {
 
         TextView artistName = findViewById(R.id.playText);
 
+        int lol = R.raw.twistedrock;
+
         // Media code
-        mediaPlayer = MediaPlayer.create(this,R.raw.twistedrock);
+        mediaPlayer = MediaPlayer.create(this,lol);
         play = (Button)findViewById(R.id.play);
         forward = (Button)findViewById(R.id.forward);
         back = (Button)findViewById(R.id.rewind);
@@ -42,7 +44,12 @@ public class PlayerActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
+                if(!mediaPlayer.isPlaying()){
+                    mediaPlayer.start();
+                }
+                else {
+                    mediaPlayer.pause();
+                }
             }
         });
 

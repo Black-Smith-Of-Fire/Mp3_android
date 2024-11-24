@@ -23,7 +23,7 @@ import java.util.List;
 public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
-    Button play, pause;
+    Button play, pause, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class PlayerActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this,R.raw.twistedrock);
         play = (Button)findViewById(R.id.play);
         pause = (Button)findViewById(R.id.forward);
+        back = (Button)findViewById(R.id.rewind);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +46,17 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
-        pause.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mediaPlayer.pause();
+            }
+        });
+
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 100000);
             }
         });
 

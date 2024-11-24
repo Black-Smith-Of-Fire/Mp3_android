@@ -49,7 +49,8 @@ public class PlayerActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.pause();
+//                mediaPlayer.pause();
+                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 100000);
             }
         });
 

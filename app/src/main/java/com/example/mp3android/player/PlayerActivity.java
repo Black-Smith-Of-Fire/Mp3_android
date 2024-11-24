@@ -1,7 +1,9 @@
 package com.example.mp3android.player;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +22,9 @@ import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
 
+    MediaPlayer mediaPlayer;
+    Button play, pause;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,25 @@ public class PlayerActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("Artist_name");
 
         TextView artistName = findViewById(R.id.playText);
+
+        // Media code
+        mediaPlayer = MediaPlayer.create(this,R.raw.twistedrock);
+        play = (Button)findViewById(R.id.play);
+        pause = (Button)findViewById(R.id.forward);
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+            }
+        });
+
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.pause();
+            }
+        });
 
         artistName.setText(name);
 

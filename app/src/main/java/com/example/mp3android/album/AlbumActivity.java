@@ -77,6 +77,7 @@ public class AlbumActivity extends AppCompatActivity implements ArtistInterface{
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(AlbumActivity.this, PlayerActivity.class);
+        intent.putExtra("Artist_name",items.get(position).getName());
         startActivity(intent);
     }
 }

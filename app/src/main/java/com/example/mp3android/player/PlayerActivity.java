@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mp3android.Item;
 import com.example.mp3android.R;
+import com.google.android.material.slider.Slider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ import java.util.List;
 public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
-    Button play,forward, pause, back;
+    Button play,forward, back;
+    Slider slider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +42,20 @@ public class PlayerActivity extends AppCompatActivity {
         play = (Button)findViewById(R.id.play);
         forward = (Button)findViewById(R.id.forward);
         back = (Button)findViewById(R.id.rewind);
+        slider = findViewById(R.id.slider);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mediaPlayer.isPlaying()){
+                if(!mediaPlayer.isPlaying()){ // start the  music
+                    play.setBackground(null);
+                    play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
+                    slider.setValue(2.7f);
                 }
-                else {
+                else { // stop it
+                    play.setBackground(null);
+                    play.setBackgroundResource(R.drawable.baseline_play_arrow_24);
                     mediaPlayer.pause();
                 }
             }

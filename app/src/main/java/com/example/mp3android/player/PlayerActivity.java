@@ -18,6 +18,7 @@ import com.example.mp3android.Item;
 import com.example.mp3android.R;
 import com.google.android.material.slider.Slider;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,9 +52,7 @@ public class PlayerActivity extends AppCompatActivity {
                     play.setBackground(null);
                     play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
-                    artistName.setText("" + mediaPlayer.getCurrentPosition()); // Just to see what is the current timeline of the song
-                    int currentPos = (mediaPlayer.getCurrentPosition()/100); // creating a variable that the slider can use to change its current position
-                    slider.setValue((float) currentPos); // casting currentPos to float
+                    sliderValueChange();
                 }
                 else { // stop it
                     play.setBackground(null);
@@ -80,6 +79,21 @@ public class PlayerActivity extends AppCompatActivity {
 
 //        artistName.setText(name);
 
+    }
+
+    private void sliderValueChange(){
+        new Thread(){
+            @Override
+            public void run(){
+                try{
+                    int currentPos = mediaPlayer.getCurrentPosition()/100;
+                    slider.setValue((float) currentPos);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     private List<Item> itemList() {

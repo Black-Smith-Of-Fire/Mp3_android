@@ -51,7 +51,9 @@ public class PlayerActivity extends AppCompatActivity {
                     play.setBackground(null);
                     play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
-                    slider.setValue(2.7f);
+                    artistName.setText("" + mediaPlayer.getCurrentPosition()); // Just to see what is the current timeline of the song
+                    int currentPos = (mediaPlayer.getCurrentPosition()/100); // creating a variable that the slider can use to change its current position
+                    slider.setValue((float) currentPos); // casting currentPos to float
                 }
                 else { // stop it
                     play.setBackground(null);
@@ -76,7 +78,7 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
-        artistName.setText(name);
+//        artistName.setText(name);
 
     }
 

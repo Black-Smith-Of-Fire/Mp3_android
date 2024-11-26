@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -45,7 +46,19 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         back = (Button)findViewById(R.id.rewind);
         slider = findViewById(R.id.slider);
 
-        if (mediaPlayer.isPlaying()) sliderValueChange();
+
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+
+                // TODO : fix this logical issue
+                if (fromUser){
+                    mediaPlayer.pause();
+                    mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + (int)slider.getValue());
+                    mediaPlayer.start();
+                }
+            }
+        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +67,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                     play.setBackground(null);
                     play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
+                    artistName.setText(Float.toString(slider.getValue()));
                     sliderValueChange();
                 }
                 else { // stop it

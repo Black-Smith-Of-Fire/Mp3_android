@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivity extends AppCompatActivity implements View.OnClickListener{
 
     MediaPlayer mediaPlayer;
     Button play,forward, back;
@@ -44,6 +44,8 @@ public class PlayerActivity extends AppCompatActivity {
         forward = (Button)findViewById(R.id.forward);
         back = (Button)findViewById(R.id.rewind);
         slider = findViewById(R.id.slider);
+
+        if (mediaPlayer.isPlaying()) sliderValueChange();
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +94,15 @@ public class PlayerActivity extends AppCompatActivity {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
+                sliderValueChange();
             }
         }.start();
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.play) {
+
+        }
+    }
 }

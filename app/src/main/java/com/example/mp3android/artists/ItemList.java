@@ -21,6 +21,7 @@ public class ItemList {
 public List<Item> itemList() {
 
     try{
+//        Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager.getConnection(url,user,password);
         Statement statement = connection.createStatement();
 
@@ -34,7 +35,7 @@ public List<Item> itemList() {
             it.add(new Item(R.drawable.blacksmith,resultSet.getString("artistName")));
         }
 
-    } catch (SQLException e) {
+    } catch (SQLException e /*| ClassNotFoundException e*/) {
         throw new RuntimeException(e);
     }
 

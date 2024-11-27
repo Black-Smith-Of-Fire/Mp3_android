@@ -1,33 +1,22 @@
 package com.example.mp3android.player;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.mp3android.Item;
 import com.example.mp3android.R;
 import com.google.android.material.slider.Slider;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class PlayerActivity extends AppCompatActivity implements View.OnClickListener{
+public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
     Button play,forward, back;
     Slider slider;
+    boolean user;
+    TextView artistName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +24,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_player);
         String name = getIntent().getStringExtra("Artist_name");
 
-        TextView artistName = findViewById(R.id.playText);
+        artistName = findViewById(R.id.playText);
 
         int music = R.raw.twistedrock;
 
@@ -47,18 +36,19 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         slider = findViewById(R.id.slider);
 
 
-        slider.addOnChangeListener(new Slider.OnChangeListener() {
-            @Override
-            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
-
-                // TODO : fix this logical issue
-                if (fromUser){
-                    mediaPlayer.pause();
-                    mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + (int)slider.getValue());
-                    mediaPlayer.start();
-                }
-            }
-        });
+//        slider.addOnChangeListener(new Slider.OnChangeListener() {
+//            @Override
+//            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+//                // TODO : fix this logical issue
+//                if (fromUser) {
+////                    sliderValueChange();
+////                    mediaPlayer.pause();
+//                    user = true;
+//                    mediaPlayer.seekTo(/*mediaPlayer.getCurrentPosition() * */  (int)slider.getValue());
+//                    mediaPlayer.start();
+//                }
+//            }
+//        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +57,6 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                     play.setBackground(null);
                     play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
-                    artistName.setText(Float.toString(slider.getValue()));
                     sliderValueChange();
                 }
                 else { // stop it
@@ -97,13 +86,18 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void sliderValueChange(){
+    private void sliderValueChange() {
+//        if (slider.isActivated()) {
+//            return;}
         new Thread(){
             @Override
             public void run(){
                 try{
-                    int currentPos = mediaPlayer.getCurrentPosition()/100;
+                    int ticksToMove = mediaPlayer.getDuration() / 100;
+                    int currentPos = 100 - (mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition()) / ticksToMove;
+//                    artistName.setText(currentPos);
                     slider.setValue((float) currentPos);
+                    artistName.setText(Float.toString(slider.getValue()));
                 }
                 catch (Exception e) {
                     e.printStackTrace();
@@ -113,10 +107,4 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         }.start();
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.play) {
-
-        }
-    }
 }

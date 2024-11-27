@@ -36,19 +36,18 @@ public class PlayerActivity extends AppCompatActivity {
         slider = findViewById(R.id.slider);
 
 
-//        slider.addOnChangeListener(new Slider.OnChangeListener() {
-//            @Override
-//            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
-//                // TODO : fix this logical issue
-//                if (fromUser) {
-////                    sliderValueChange();
-////                    mediaPlayer.pause();
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+                // TODO : fix this logical issue
+                if (fromUser) {
+                    int ticksToMove = mediaPlayer.getDuration() / 100;
 //                    user = true;
-//                    mediaPlayer.seekTo(/*mediaPlayer.getCurrentPosition() * */  (int)slider.getValue());
-//                    mediaPlayer.start();
-//                }
-//            }
-//        });
+                    mediaPlayer.seekTo(ticksToMove * (int)slider.getValue());
+                    mediaPlayer.start();
+                }
+            }
+        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +56,7 @@ public class PlayerActivity extends AppCompatActivity {
                     play.setBackground(null);
                     play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
-                    sliderValueChange();
+//                    sliderValueChange();
                 }
                 else { // stop it
                     play.setBackground(null);

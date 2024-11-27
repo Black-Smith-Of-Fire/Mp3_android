@@ -10,7 +10,7 @@ public class ItemList {
 
     List<Item> it = new ArrayList<>();
 
-    private List<Item> itemList() {
+    public List<Item> itemList() {
 
         it.add(new Item(R.drawable.blacksmith,"Chris"));
         it.add(new Item(R.drawable.blacksmith,"Jaime"));

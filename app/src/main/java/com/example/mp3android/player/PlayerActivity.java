@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mp3android.R;
 import com.google.android.material.slider.Slider;
 
+//TODO : the app keeps crashing when music is being played. It may have to do something with the memory , fix it
+
 public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
@@ -37,6 +39,7 @@ public class PlayerActivity extends AppCompatActivity {
 
 
         slider.addOnChangeListener(new Slider.OnChangeListener() {
+            // ISSUE : crashing the app
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 // TODO : fix this logical issue
@@ -89,6 +92,7 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     private void sliderValueChange(boolean user) {
+        // ISSUE : crashing the app
         if (!user) {
             return;
         }

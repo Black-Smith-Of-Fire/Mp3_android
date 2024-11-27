@@ -41,10 +41,13 @@ public class PlayerActivity extends AppCompatActivity {
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 // TODO : fix this logical issue
                 if (fromUser) {
+                    sliderValueChange(false);
                     int ticksToMove = mediaPlayer.getDuration() / 100;
 //                    user = true;
                     mediaPlayer.seekTo(ticksToMove * (int)slider.getValue());
                     mediaPlayer.start();
+                } else {
+                    sliderValueChange(true);
                 }
             }
         });
@@ -56,7 +59,7 @@ public class PlayerActivity extends AppCompatActivity {
                     play.setBackground(null);
                     play.setBackgroundResource(R.drawable.home_icon);
                     mediaPlayer.start();
-//                    sliderValueChange();
+                    sliderValueChange(true);
                 }
                 else { // stop it
                     play.setBackground(null);
@@ -85,9 +88,10 @@ public class PlayerActivity extends AppCompatActivity {
 
     }
 
-    private void sliderValueChange() {
-//        if (slider.isActivated()) {
-//            return;}
+    private void sliderValueChange(boolean user) {
+        if (!user) {
+            return;
+        }
         new Thread(){
             @Override
             public void run(){
@@ -101,7 +105,7 @@ public class PlayerActivity extends AppCompatActivity {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-                sliderValueChange();
+                sliderValueChange(true);
             }
         }.start();
     }

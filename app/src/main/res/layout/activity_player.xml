@@ -7,9 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<!--
+
+    <!--
 TODO : the icon of the button does not change change it
 -->
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="105dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +29,8 @@ TODO : the icon of the button does not change change it
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lol"
-            /></LinearLayout>
+            />
+    </LinearLayout>
 
     <com.google.android.material.slider.Slider
         android:id="@+id/slider"

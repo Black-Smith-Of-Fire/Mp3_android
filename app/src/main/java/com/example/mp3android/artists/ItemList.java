@@ -11,36 +11,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO : implement the database connectivity and try to see some alternatives
+
 public class ItemList {
-    private String url = "jdbc:mysql://127.0.0.1:3306/mp3android";
-    private String user = "ben";
-    private String password = "example-password";
 
     List<Item> it = new ArrayList<>();
 
 public List<Item> itemList() {
 
-    try{
-//        Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(url,user,password);
-        Statement statement = connection.createStatement();
 
-        String query = "Select * from artistList";
-
-        statement.executeQuery(query);
-
-        ResultSet resultSet = statement.getResultSet();
-
-        while(resultSet.next()){
-            it.add(new Item(R.drawable.blacksmith,resultSet.getString("artistName")));
-        }
-
-    } catch (SQLException e /*| ClassNotFoundException e*/) {
-        throw new RuntimeException(e);
-    }
-
-//        it.add(new Item(R.drawable.blacksmith,"Shomw"));
-//        it.add(new Item(R.drawable.blacksmith,"Carmine"));
+        it.add(new Item(R.drawable.blacksmith,"Shomw"));
+        it.add(new Item(R.drawable.blacksmith,"Carmine"));
         return it;
     }
 }

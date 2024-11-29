@@ -16,12 +16,10 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsViewHolder> {
 
     private final ArtistInterface artistInterface;
     private List<Item> items;
-    private List<Item> names;
 
     public ArtistsAdapter(List<Item> items, ArtistInterface artistInterface) {
         this.artistInterface = artistInterface;
         this.items = items;
-        this.names = names;
     }
 
     @NonNull

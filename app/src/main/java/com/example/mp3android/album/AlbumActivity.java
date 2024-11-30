@@ -52,9 +52,8 @@ public class AlbumActivity extends AppCompatActivity implements ArtistInterface{
     private List<Item> itemList() {
 
         List<Item> it = new ArrayList<>();
-        it.add(new Item(R.drawable.blacksmith,"Chris"));
-        it.add(new Item(R.drawable.blacksmith,"Jaime"));
-        it.add(new Item(R.drawable.blacksmith,"Sara"));
+        it.add(new Item(R.drawable.blacksmith,"Twisted"));
+        it.add(new Item(R.drawable.blacksmith,"Paro"));
         return it;
     }
 

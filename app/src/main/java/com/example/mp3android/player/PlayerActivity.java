@@ -28,7 +28,7 @@ public class PlayerActivity extends AppCompatActivity {
 
         artistName = findViewById(R.id.playText);
 
-        int music = R.raw.twistedrock;
+        int music = musicHandler(name);
 
         // Media code
         mediaPlayer = MediaPlayer.create(this,music);
@@ -89,6 +89,16 @@ public class PlayerActivity extends AppCompatActivity {
 
 //        artistName.setText(name);
 
+    }
+
+    private int musicHandler(String name){
+        if (name.equals("Shomw")) {
+            return R.raw.twistedrock;
+        }
+        else if (name.equals("Carmine")) {
+            return R.raw.twistedrock;
+        }
+        return 0;
     }
 
     private void sliderValueChange(boolean user) {

@@ -92,13 +92,15 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     private int musicHandler(String name){
-        if (name.equals("Shomw")) {
+        if (name.equals("Twisted")) {
             return R.raw.twistedrock;
         }
-        else if (name.equals("Carmine")) {
-            return R.raw.twistedrock;
+        else if (name.equals("Paro")) {
+            return R.raw.paro;
         }
-        return 0;
+        else {
+            return 0;
+        }
     }
 
     private void sliderValueChange(boolean user) {

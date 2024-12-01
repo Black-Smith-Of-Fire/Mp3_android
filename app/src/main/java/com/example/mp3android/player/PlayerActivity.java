@@ -61,7 +61,8 @@ public class PlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!mediaPlayer.isPlaying()){ // start the  music
-                    play.setBackgroundResource(R.drawable.baseline_pause_24);
+                    play.setBackground(null);
+                    play.setImageResource(R.drawable.baseline_pause_24);
                     mediaPlayer.start();
                     sliderValueChange(true);
                 }

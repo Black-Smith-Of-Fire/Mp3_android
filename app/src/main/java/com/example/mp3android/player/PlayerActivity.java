@@ -3,6 +3,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,8 @@ import com.google.android.material.slider.Slider;
 public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
-    Button play,forward, back;
+    Button forward, back;
+    ImageButton play;
     Slider slider;
     boolean user;
     TextView artistName;
@@ -32,7 +34,7 @@ public class PlayerActivity extends AppCompatActivity {
 
         // Media code
         mediaPlayer = MediaPlayer.create(this,music);
-        play = (Button)findViewById(R.id.play);
+        play = (ImageButton)findViewById(R.id.play);
         forward = (Button)findViewById(R.id.forward);
         back = (Button)findViewById(R.id.rewind);
         slider = findViewById(R.id.slider);
@@ -59,8 +61,7 @@ public class PlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!mediaPlayer.isPlaying()){ // start the  music
-                    play.setBackground(null);
-                    play.setBackgroundResource(R.drawable.home_icon);
+                    play.setBackgroundResource(R.drawable.baseline_pause_24);
                     mediaPlayer.start();
                     sliderValueChange(true);
                 }

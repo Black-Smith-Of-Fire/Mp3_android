@@ -68,7 +68,7 @@ public class PlayerActivity extends AppCompatActivity {
                 }
                 else { // stop it
                     play.setBackground(null);
-                    play.setBackgroundResource(R.drawable.baseline_play_arrow_24);
+                    play.setImageResource(R.drawable.baseline_play_arrow_24);
                     mediaPlayer.pause();
                 }
             }

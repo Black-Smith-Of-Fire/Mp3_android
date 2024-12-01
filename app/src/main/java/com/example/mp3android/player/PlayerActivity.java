@@ -16,8 +16,7 @@ import com.google.android.material.slider.Slider;
 public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
-    Button forward, back;
-    ImageButton play;
+    ImageButton play, forward, back;
     Slider slider;
     boolean user;
     TextView artistName;
@@ -35,8 +34,8 @@ public class PlayerActivity extends AppCompatActivity {
         // Media code
         mediaPlayer = MediaPlayer.create(this,music);
         play = (ImageButton)findViewById(R.id.play);
-        forward = (Button)findViewById(R.id.forward);
-        back = (Button)findViewById(R.id.rewind);
+        forward = (ImageButton)findViewById(R.id.forward);
+        back = (ImageButton)findViewById(R.id.rewind);
         slider = findViewById(R.id.slider);
 
 

@@ -54,12 +54,12 @@ TODO : the icon of the button does not change change it
         app:layout_constraintTop_toBottomOf="@+id/slider"
         tools:ignore="MissingConstraints">
 
-        <Button
+        <ImageButton
             android:id="@+id/rewind"
             android:layout_width="120dp"
             android:layout_height="100dp"
-            android:drawableLeft="@drawable/baseline_fast_rewind_24"
             android:background="@drawable/round_button"
+            android:src="@drawable/baseline_fast_rewind_24"
             android:textSize="45dp"
             />
 
@@ -67,17 +67,18 @@ TODO : the icon of the button does not change change it
             android:id="@+id/play"
             android:layout_width="120dp"
             android:layout_height="100dp"
+            android:background="@drawable/round_button"
             android:src="@drawable/baseline_play_arrow_24"
             android:textSize="45dp"
             />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/forward"
             android:layout_width="120dp"
             android:layout_height="100dp"
-            android:drawableLeft="@drawable/baseline_fast_forward_24"
             android:background="@drawable/round_button"
+            android:src="@drawable/baseline_fast_forward_24"
             android:textSize="45dp"
             />
 

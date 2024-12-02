@@ -11,11 +11,6 @@ This is the xml used by the album package. It uses the songlist template from th
     android:layout_height="match_parent"
     tools:context=".album.AlbumActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Morin"
-        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

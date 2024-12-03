@@ -61,13 +61,14 @@ public class PlayerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!mediaPlayer.isPlaying()){ // start the  music
                     play.setBackground(null);
-                    play.setImageResource(R.drawable.baseline_pause_24);
+                    play.setImageResource(R.drawable.pause_button);
+//                    play.setImageResource(R.drawable.round_button);
                     mediaPlayer.start();
                     sliderValueChange(true);
                 }
                 else { // stop it
                     play.setBackground(null);
-                    play.setImageResource(R.drawable.baseline_play_arrow_24);
+                    play.setImageResource(R.drawable.pause_button);
                     mediaPlayer.pause();
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.mp3android.playlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,12 +26,22 @@ public class PlaylistFragment extends Fragment {
     private List<Item> items;
     private PlaylistAdapter adapter;
 
+    Button newPlaylist;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_playlist,container,false);
 
+        newPlaylist = (Button)rootView.findViewById(R.id.newPlaylist);
+
+        newPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlaylistFragment.this, PlayerActivity.class);
+                startActivity(intent);
+            }
+        });
         items = itemList();
         //Recycler view
         recyclerView = rootView.findViewById(R.id.playlistRecyclerView);
@@ -50,4 +62,5 @@ public class PlaylistFragment extends Fragment {
         it.add(new Item(R.drawable.blacksmith,"Carmine"));
         return it;
     }
+
 }

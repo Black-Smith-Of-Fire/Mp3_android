@@ -1,6 +1,8 @@
 package com.example.mp3android.player;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,12 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mp3android.R;
 import com.google.android.material.slider.Slider;
 
-//TODO : the app keeps crashing when music is being played. It may have to do something with the memory , fix it
+import java.util.logging.Logger;
+
+//TODO : the app keeps crashing when music is being played because of line number 127 artistname.setText
 
 public class PlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
-    ImageButton play, forward, back;
+    ImageButton  forward, back;
+    Button play;
     Slider slider;
     boolean user;
     TextView artistName;
@@ -33,23 +38,24 @@ public class PlayerActivity extends AppCompatActivity {
 
         // Media code
         mediaPlayer = MediaPlayer.create(this,music);
-        play = (ImageButton)findViewById(R.id.play);
+        play = (Button)findViewById(R.id.play);
         forward = (ImageButton)findViewById(R.id.forward);
         back = (ImageButton)findViewById(R.id.rewind);
         slider = findViewById(R.id.slider);
 
 
         slider.addOnChangeListener(new Slider.OnChangeListener() {
-            // ISSUE : crashing the app
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
-                // TODO : fix this logical issue
                 if (fromUser) {
                     sliderValueChange(false);
-                    int ticksToMove = mediaPlayer.getDuration() / 100;
-//                    user = true;
-                    mediaPlayer.seekTo(ticksToMove * (int)slider.getValue());
-                    mediaPlayer.start();
+                    try {
+                        int ticksToMove = mediaPlayer.getDuration() / 100;
+                        mediaPlayer.seekTo(ticksToMove * (int) slider.getValue());
+                        mediaPlayer.start();
+                    }catch (Exception e) {
+                        Log.e("X","Coming from addOnChangeListener");
+                    }
                 } else {
                     sliderValueChange(true);
                 }
@@ -59,16 +65,16 @@ public class PlayerActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mediaPlayer.isPlaying()){ // start the  music
-                    play.setBackground(null);
-                    play.setImageResource(R.drawable.pause_button);
+                if(!mediaPlayer.isPlaying()) { // start the  music
+                    play.setBackgroundResource(R.drawable.baseline_pause_24);
+//                    play.setBackground(getResources().getDrawable(R.drawable.round_button));
 //                    play.setImageResource(R.drawable.round_button);
                     mediaPlayer.start();
                     sliderValueChange(true);
                 }
                 else { // stop it
                     play.setBackground(null);
-                    play.setImageResource(R.drawable.play_button);
+                    play.setBackgroundResource(R.drawable.baseline_play_arrow_24);
                     mediaPlayer.pause();
                 }
             }
@@ -106,7 +112,7 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     private void sliderValueChange(boolean user) {
-        // ISSUE : crashing the app
+        // TODO : Fix the TextView setText
         if (!user) {
             return;
         }
@@ -118,10 +124,10 @@ public class PlayerActivity extends AppCompatActivity {
                     int currentPos = 100 - (mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition()) / ticksToMove;
 //                    artistName.setText(currentPos);
                     slider.setValue((float) currentPos);
-                    artistName.setText(Float.toString(slider.getValue()));
+//                    artistName.setText(Float.toString(slider.getValue())); // This code somehow is giving an error , check this out
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e("Y","Coming from sliderValueChange");
                 }
                 sliderValueChange(true);
             }

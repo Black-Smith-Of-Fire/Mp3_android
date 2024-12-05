@@ -5,27 +5,19 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.media.MediaPlayer;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowInsets;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.mp3android.artists.HomeFragment;
+import com.example.mp3android.dj.DJFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.mp3android.playlist.*;
-import com.example.mp3android.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == R.id.playlist) {
                     fragmentChanger(new PlaylistFragment(), false);
                 } else {
-                    fragmentChanger(new SettingsFragment(),false);
+                    fragmentChanger(new DJFragment(),false);
                 }
 
                 return true;

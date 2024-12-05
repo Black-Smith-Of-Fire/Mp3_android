@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Mp3Android</string>
     <string name="button_color">#FA71CD</string>
+    <string-array name="rangeSliderValues">
+        <item>0.0</item>
+        <item>100.0</item>
+    </string-array>
 </resources>

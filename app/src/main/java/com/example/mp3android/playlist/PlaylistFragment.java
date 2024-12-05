@@ -38,8 +38,7 @@ public class PlaylistFragment extends Fragment {
         newPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlaylistFragment.this, PlayerActivity.class);
-                startActivity(intent);
+                popUp();
             }
         });
         items = itemList();
@@ -53,6 +52,8 @@ public class PlaylistFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         return rootView;
     }
+
+    private void popUp(){}
 
     private List<Item> itemList() {
 

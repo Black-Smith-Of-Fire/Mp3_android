@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
@@ -33,6 +34,8 @@ public class PlaylistFragment extends Fragment {
     private List<Item> items;
     private PlaylistAdapter adapter;
     RelativeLayout layout;
+    Button done;
+    EditText playListInput;
 
     Button newPlaylist;
     @Override
@@ -65,7 +68,10 @@ public class PlaylistFragment extends Fragment {
     private void popUp(){
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
         View popUpView = inflater.inflate(R.layout.popup_window, null);
+        done = (Button)popUpView.findViewById(R.id.Done);
+        playListInput = (EditText) popUpView.findViewById(R.id.playlistInput);
 
+        //Displaying the popup window
         int width = ViewGroup.LayoutParams.MATCH_PARENT;
         int height = ViewGroup.LayoutParams.WRAP_CONTENT;
         boolean focusable = true;
@@ -74,6 +80,14 @@ public class PlaylistFragment extends Fragment {
             @Override
             public void run() {
                 popupWindow.showAtLocation(layout, Gravity.TOP,0,0);
+            }
+        });
+
+        // Done button working
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                items.add(new Item(R.drawable.blacksmith,playListInput.getText().toString()));
             }
         });
     }

@@ -1,15 +1,22 @@
 package com.example.mp3android.playlist;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.view.View.inflate;
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +32,7 @@ public class PlaylistFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<Item> items;
     private PlaylistAdapter adapter;
+    RelativeLayout layout;
 
     Button newPlaylist;
     @Override
@@ -34,6 +42,7 @@ public class PlaylistFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_playlist,container,false);
 
         newPlaylist = (Button)rootView.findViewById(R.id.newPlaylist);
+        layout = rootView.findViewById(R.id.relative);
 
         newPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +62,21 @@ public class PlaylistFragment extends Fragment {
         return rootView;
     }
 
-    private void popUp(){}
+    private void popUp(){
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popUpView = inflater.inflate(R.layout.popup_window, null);
+
+        int width = ViewGroup.LayoutParams.MATCH_PARENT;
+        int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        PopupWindow popupWindow = new PopupWindow(popUpView, width, height, focusable);
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+            }
+        });
+    }
 
     private List<Item> itemList() {
 

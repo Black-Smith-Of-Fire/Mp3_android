@@ -73,7 +73,7 @@ public class PlaylistFragment extends Fragment {
         layout.post(new Runnable() {
             @Override
             public void run() {
-                popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+                popupWindow.showAtLocation(layout, Gravity.TOP,0,0);
             }
         });
     }

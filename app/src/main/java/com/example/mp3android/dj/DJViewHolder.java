@@ -56,15 +56,20 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
             public void onValueChange(@NonNull RangeSlider slider, float value , boolean fromUser){
                 List <Float> list = rangeSlider.getValues();
 //                Toast.makeText(itemView.getContext(),"X: " + list.get(0) ,Toast.LENGTH_SHORT).show();
-//                Toast.makeText(itemView.getContext(),"Y: " + list.get(2) ,Toast.LENGTH_SHORT).show();
-//
-                try {
-                    float ticksToMove = mediaPlayer.getDuration() / 100;
-                    int position = (int) (ticksToMove * list.get(0));
-                    mediaPlayer.seekTo(position);
-//                    mediaPlayer.start();
-                }catch (Exception e) {
-                    Log.e("X","Coming from addOnChangeListener");
+//                Toast.makeText(itemView.getContext(),"Y: " + list.get(1) ,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(itemView.getContext(),"Z: " + list.get(2) ,Toast.LENGTH_SHORT).show();
+
+                if (fromUser) {
+                    sliderValueChange(false);
+                    try {
+                        float ticksToMove = mediaPlayer.getDuration() / 100;
+                        int position = (int) (ticksToMove * list.get(0));
+                        mediaPlayer.seekTo(position);
+                    }catch (Exception e) {
+                        Log.e("X","Coming from addOnChangeListener");
+                    }
+                } else {
+                    sliderValueChange(true);
                 }
             }
         });
@@ -72,13 +77,12 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int music = R.raw.twistedrock;
-
                 if(!mediaPlayer.isPlaying()) { // start the  music
                     play.setBackgroundResource(R.drawable.baseline_pause_24);
 //                    play.setBackground(getResources().getDrawable(R.drawable.round_button));
 //                    play.setImageResource(R.drawable.round_button);
                     mediaPlayer.start();
+                    sliderValueChange(true);
                 }
                 else { // stop it
                     play.setBackground(null);
@@ -87,5 +91,24 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
+    }
+    private void sliderValueChange(boolean user) {
+        // TODO : Fix the TextView setText
+        if (!user) {
+            return;
+        }
+        new Thread(){
+            @Override
+            public void run(){
+                    int ticksToMove = mediaPlayer.getDuration() / 100;
+                    int currentPos = 100 - (mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition()) / ticksToMove;
+                    List<Float> list = rangeSlider.getValues();
+                    list.set(1,(float) currentPos);
+//                    list.
+                Log.i("The values",list.toString());
+                rangeSlider.setValues(list);
+                sliderValueChange(true);
+            }
+        }.start();
     }
 }

@@ -55,8 +55,17 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value , boolean fromUser){
                 List <Float> list = rangeSlider.getValues();
-                Toast.makeText(itemView.getContext(),"X: " + list.get(0) ,Toast.LENGTH_SHORT).show();
-                Toast.makeText(itemView.getContext(),"Y: " + list.get(1) ,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(itemView.getContext(),"X: " + list.get(0) ,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(itemView.getContext(),"Y: " + list.get(2) ,Toast.LENGTH_SHORT).show();
+//
+                try {
+                    float ticksToMove = mediaPlayer.getDuration() / 100;
+                    int position = (int) (ticksToMove * list.get(0));
+                    mediaPlayer.seekTo(position);
+//                    mediaPlayer.start();
+                }catch (Exception e) {
+                    Log.e("X","Coming from addOnChangeListener");
+                }
             }
         });
 

@@ -38,27 +38,12 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         play = (ImageButton) itemView.findViewById(R.id.play);
         mediaPlayer = MediaPlayer.create(this.itemView.getContext(), R.raw.twistedrock);
 
-//        rangeSlider.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
-//            @Override
-//            public void onStartTrackingTouch(@NonNull RangeSlider slider) {
-//                Log.i("Slider's X value is : ","X is working , hurray");
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(@NonNull RangeSlider slider) {
-//                Log.i("Slider's Y value is : ", list.get(1).toString());
-//
-//            }
-//        });
 
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener(){
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value , boolean fromUser){
                 List <Float> list = rangeSlider.getValues();
                 Log.i("X , that is 0 : ", list.get(0).toString());
-//                Toast.makeText(itemView.getContext(),"X: " + list.get(0) ,Toast.LENGTH_SHORT).show();
-//                Toast.makeText(itemView.getContext(),"Y: " + list.get(1) ,Toast.LENGTH_SHORT).show();
-//                Toast.makeText(itemView.getContext(),"Z: " + list.get(2) ,Toast.LENGTH_SHORT).show();
 
                 if (fromUser) {
                     sliderValueChange(false);
@@ -80,8 +65,6 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if(!mediaPlayer.isPlaying()) { // start the  music
                     play.setBackgroundResource(R.drawable.baseline_pause_24);
-//                    play.setBackground(getResources().getDrawable(R.drawable.round_button));
-//                    play.setImageResource(R.drawable.round_button);
                     mediaPlayer.start();
                     sliderValueChange(true);
                 }
@@ -106,16 +89,22 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                     int currentPos = 100 - (mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition()) / ticksToMove;
                     List<Float> list = rangeSlider.getValues();
                     list.set(1,(float) currentPos);
-//                    list.
-                Log.i("The values",list.toString());
-                rangeSlider.setValues(list);
-                if (list.get(1).equals(list.get(2))) {
-                    mediaPlayer.pause();
-                    return;
-//                    sliderValueChange(false);
-                }
-                sliderValueChange(true);
+                    Log.i("The values",list.toString());
+                    rangeSlider.setValues(list);
+                    if (list.get(1).equals(list.get(2))) {
+                        mediaPlayer.pause();
+                        nextInline(list.get(2));
+                        return;
+                    }
+
+                    sliderValueChange(true);
             }
         }.start();
+    }
+
+    private void nextInline(float value){
+        if (value == 0){
+
+        }
     }
 }

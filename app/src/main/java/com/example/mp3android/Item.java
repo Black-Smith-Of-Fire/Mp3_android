@@ -1,19 +1,22 @@
 package com.example.mp3android;
 
+import java.util.List;
+
 public class Item {
     String name;
     int image;
     int music;
+    List<Float> values;
 
     public Item(int image, String name) {
         this.image = image;
         this.name = name;
     }
 
-    public Item(int image, String name, int music) {
+    public Item(int image, String name, List<Float> values) {
         this.image = image;
         this.name = name;
-        this.music = music;
+        this.values = values;
     }
     public String getName() {
         return name;
@@ -23,6 +26,13 @@ public class Item {
         this.name = name;
     }
 
+    public List<Float> getValues() {
+        return values;
+    }
+
+    public void setValues(List<Float> values) {
+        this.values = values;
+    }
 
     public int getImage() {
         return image;

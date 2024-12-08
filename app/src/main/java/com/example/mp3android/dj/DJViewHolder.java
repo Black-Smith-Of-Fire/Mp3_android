@@ -55,6 +55,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value , boolean fromUser){
                 List <Float> list = rangeSlider.getValues();
+                Log.i("X , that is 0 : ", list.get(0).toString());
 //                Toast.makeText(itemView.getContext(),"X: " + list.get(0) ,Toast.LENGTH_SHORT).show();
 //                Toast.makeText(itemView.getContext(),"Y: " + list.get(1) ,Toast.LENGTH_SHORT).show();
 //                Toast.makeText(itemView.getContext(),"Z: " + list.get(2) ,Toast.LENGTH_SHORT).show();
@@ -63,7 +64,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                     sliderValueChange(false);
                     try {
                         float ticksToMove = mediaPlayer.getDuration() / 100;
-                        int position = (int) (ticksToMove * list.get(0));
+                        int position = (int) (ticksToMove * list.get(1));
                         mediaPlayer.seekTo(position);
                     }catch (Exception e) {
                         Log.e("X","Coming from addOnChangeListener");
@@ -92,8 +93,9 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
     private void sliderValueChange(boolean user) {
-        // TODO : Fix the TextView setText
+        // TODO : Fix the
         if (!user) {
             return;
         }
@@ -107,6 +109,11 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
 //                    list.
                 Log.i("The values",list.toString());
                 rangeSlider.setValues(list);
+                if (list.get(1).equals(list.get(2))) {
+                    mediaPlayer.pause();
+                    return;
+//                    sliderValueChange(false);
+                }
                 sliderValueChange(true);
             }
         }.start();

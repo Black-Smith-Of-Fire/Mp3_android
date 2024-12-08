@@ -50,12 +50,17 @@ public class DJFragment extends Fragment {
 
     private List<Item> itemList() {
 
+        List<Item> it = new ArrayList<>();
         List <Float> list = new ArrayList<>();
+        List <Float> list2 = new ArrayList<>();
         list.add(0,0.0f);
         list.add(1,0.0f);
         list.add(2,100.0f);
-        List<Item> it = new ArrayList<>();
         it.add(new Item(R.drawable.blacksmith,"Chris", list));
+        list2.add(0, list.get(2));
+        list2.add(1, list.get(2));
+        list2.add(2, 100.0f);
+        it.add(new Item(R.drawable.blacksmith,"Chris", list2));
         return it;
     }
 }

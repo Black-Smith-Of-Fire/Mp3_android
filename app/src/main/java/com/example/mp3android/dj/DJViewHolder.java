@@ -27,6 +27,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
     public RangeSlider rangeSlider;
     public ImageButton play;
     MediaPlayer mediaPlayer;
+    public static float newInitialPoint = 0.0f;
 
     public DJViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -102,9 +103,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         }.start();
     }
 
-    private void nextInline(float value){
-        if (value == 0){
-
-        }
+    private float nextInline(float value){
+        return newInitialPoint = value;
     }
 }

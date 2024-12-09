@@ -16,7 +16,7 @@ public class DJAdapter extends RecyclerView.Adapter<DJViewHolder> {
 
     private List<Item> items;
 
-    public DJAdapter(List<Item> items){
+    public DJAdapter(List<Item> items) {
         this.items = items;
     }
 

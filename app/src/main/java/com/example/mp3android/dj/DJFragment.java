@@ -21,7 +21,7 @@ import com.google.android.material.slider.Slider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DJFragment extends Fragment {
+public class DJFragment extends Fragment implements DJInterface {
 
     private RecyclerView recyclerView;
     private List<Item> items;
@@ -56,6 +56,16 @@ public class DJFragment extends Fragment {
         list.add(2,100.0f);
         List<Item> it = new ArrayList<>();
         it.add(new Item(R.drawable.blacksmith,"Chris", list));
+        it.add(new Item(R.drawable.blacksmith,"Chris", list));
         return it;
+    }
+
+    @Override
+    public void nextTrack() {
+        //TODO: after the music of one item is over, the music of the next item should continue
+        //Old idea : get the values of nextInline from the view holder and then if false playmusic for the next item
+//        if (!nextInLine()) {
+//            playMusic();// Make the adapter class to change the music
+//        }
     }
 }

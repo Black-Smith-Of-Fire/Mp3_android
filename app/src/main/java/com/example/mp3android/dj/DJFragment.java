@@ -49,15 +49,12 @@ public class DJFragment extends Fragment implements DJInterface {
 
     @Override
     public void nextTrack(boolean nextItem,int position) {
+        /* New problem , this mediaPlayer in this class and the mediaPlayer in DJViewHolder are both very different,
+         and so are not affected by the other class */
         if (nextItem) {
             int music = items.get(position).getMusic();
             mediaPlayer = MediaPlayer.create(getContext(),music);
             mediaPlayer.start();
         }
-        //TODO: after the music of one item is over, the music of the next item should continue
-        //Old idea : get the values of nextInline from the view holder and then if false playmusic for the next item
-//        if (!nextInLine()) {
-//            playMusic();// Make the adapter class to change the music
-//        }
     }
 }

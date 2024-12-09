@@ -6,11 +6,11 @@ import com.example.mp3android.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemList {
+public class DJItemList {
 
     List<Item> it = new ArrayList<>();
 
-    private List<Item> itemList() {
+    public List<Item> itemList() {
 
         it.add(new Item(R.drawable.blacksmith,"Chris", R.raw.twistedrock));
         it.add(new Item(R.drawable.blacksmith,"Chris", R.raw.paro));

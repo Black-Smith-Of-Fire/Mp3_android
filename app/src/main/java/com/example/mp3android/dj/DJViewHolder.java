@@ -1,23 +1,18 @@
 package com.example.mp3android.dj;
 
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mp3android.R;
 import com.google.android.material.slider.RangeSlider;
-import com.google.android.material.slider.Slider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DJViewHolder extends RecyclerView.ViewHolder {
@@ -26,17 +21,23 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
     public TextView songName, artist;
     public RangeSlider rangeSlider;
     public ImageButton play;
+    public boolean nextMusic = false;
     MediaPlayer mediaPlayer;
+    DJInterface djInterface;
+    DJItemList itemList = new DJItemList();
 
-    public DJViewHolder(@NonNull View itemView) {
+    public DJViewHolder(@NonNull View itemView, DJInterface djInterface) {
         super(itemView);
 
+        this.djInterface = djInterface;
         imageView = itemView.findViewById(R.id.artistImage1);
         songName = itemView.findViewById(R.id.songName1);
         artist = itemView.findViewById(R.id.artist2);
         rangeSlider = itemView.findViewById(R.id.slider);
         play = (ImageButton) itemView.findViewById(R.id.play);
         mediaPlayer = MediaPlayer.create(this.itemView.getContext(), R.raw.twistedrock);
+
+
 
 
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener(){
@@ -93,7 +94,12 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                     rangeSlider.setValues(list);
                     if (list.get(1).equals(list.get(2))) {
                         mediaPlayer.pause();
-                        nextInline(true);
+                        if (djInterface != null) {
+                            int pos = getAbsoluteAdapterPosition();
+                            if (pos != RecyclerView.NO_POSITION) {
+                                djInterface.nextTrack(true, getAbsoluteAdapterPosition() + 1);
+                            }
+                        }
                         return;
                     }
 

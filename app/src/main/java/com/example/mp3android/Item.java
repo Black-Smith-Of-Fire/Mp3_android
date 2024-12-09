@@ -1,5 +1,7 @@
 package com.example.mp3android;
 
+import android.media.MediaPlayer;
+
 import java.util.List;
 
 public class Item {
@@ -7,16 +9,17 @@ public class Item {
     int image;
     int music;
     List<Float> values;
+    MediaPlayer mediaPlayer;
 
     public Item(int image, String name) {
         this.image = image;
         this.name = name;
     }
 
-    public Item(int image, String name, List<Float> values) {
+    public Item(int image, String name, int music) {
         this.image = image;
         this.name = name;
-        this.values = values;
+        this.music = music;
     }
     public String getName() {
         return name;

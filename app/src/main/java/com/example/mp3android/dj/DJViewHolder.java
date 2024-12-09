@@ -93,7 +93,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                     rangeSlider.setValues(list);
                     if (list.get(1).equals(list.get(2))) {
                         mediaPlayer.pause();
-                        nextInline(list.get(2));
+                        nextInline(true);
                         return;
                     }
 
@@ -102,9 +102,12 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         }.start();
     }
 
-    private void nextInline(float value){
-        if (value == 0){
+    public void playMusic(){
+        //TODO: after the music of one item is over, the music of the next item should continue
+        mediaPlayer.start();
+    }
 
-        }
+    private boolean nextInline(boolean value){
+        return value;
     }
 }

@@ -3,6 +3,7 @@ import static android.app.PendingIntent.getActivity;
 
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mp3android.R;
 import com.google.android.material.slider.Slider;
 
+import java.net.Socket;
 import java.util.logging.Logger;
+import java.io.*;
+import java.net.*;
 
 //TODO : the app keeps crashing when music is being played because of line number 127 artistname.setText
 
@@ -28,6 +32,17 @@ public class PlayerActivity extends AppCompatActivity {
     Slider slider;
     boolean user;
     TextView artistName;
+
+    //Variables for the socket
+    private Socket socket;
+    private static ServerSocket serverSocket;
+    private static InputStreamReader inputStreamReader;
+
+    String message = "";
+    private static String ip = " 182.69.182.68"; // TODO: Check which IP address this is for and enter the correct one
+    private static PrintWriter printWriter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +61,7 @@ public class PlayerActivity extends AppCompatActivity {
         back = (ImageButton)findViewById(R.id.rewind);
         slider = findViewById(R.id.slider);
 
+        //declaring the variables for the socket
 
         slider.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
@@ -70,6 +86,7 @@ public class PlayerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!mediaPlayer.isPlaying()) { // start the  music
                     play.setBackgroundResource(R.drawable.baseline_pause_24);
+                    sendText(v);
 //                    play.setBackground(getResources().getDrawable(R.drawable.round_button));
 //                    play.setImageResource(R.drawable.round_button);
                     mediaPlayer.start();
@@ -135,6 +152,37 @@ public class PlayerActivity extends AppCompatActivity {
                 sliderValueChange(true);
             }
         }.start();
+
     }
 
+    /* Socket programming
+    Here , I will attempt to establish a comm link bw my pc and my phone
+    God!, I hope it works :<
+    * */
+
+    public void sendText(View view){
+        message = "LOL ";
+        Toast.makeText(getApplicationContext(), "To the dungeon",Toast.LENGTH_LONG).show();
+        myTask mt = new myTask();
+        mt.execute();
+    }
+
+class myTask extends AsyncTask<Void,Void,Void>{
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        try {
+            socket = new Socket(ip,5000);
+            printWriter = new PrintWriter(socket.getOutputStream());
+            printWriter.write(message);
+            printWriter.flush();
+            printWriter.close();
+            socket.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
 }

@@ -1,5 +1,6 @@
 package com.example.mp3android.dj;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,18 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.mp3android.Item;
 import com.example.mp3android.R;
 import com.google.android.material.slider.RangeSlider;
-import com.google.android.material.slider.Slider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DJFragment extends Fragment implements DJInterface {
@@ -27,7 +24,8 @@ public class DJFragment extends Fragment implements DJInterface {
     private List<Item> items;
     private DJAdapter adapter;
     RangeSlider rangeSlider;
-
+    MediaPlayer mediaPlayer;
+    DJItemList item = new DJItemList();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -35,33 +33,27 @@ public class DJFragment extends Fragment implements DJInterface {
 
         View rootView = inflater.inflate(R.layout.fragment_dj, container,false);
 
-        items = itemList();
+        items = item.itemList();
         recyclerView = rootView.findViewById(R.id.djRecyclerView);
 
         View view = inflater.inflate(R.layout.dj_list, container,false);
         rangeSlider = view.findViewById(R.id.slider);
 
-        adapter = new DJAdapter(items);
+        adapter = new DJAdapter(items,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         return rootView;
     }
 
-    private List<Item> itemList() {
-
-        List <Float> list = new ArrayList<>();
-        list.add(0,0.0f);
-        list.add(1,0.0f);
-        list.add(2,100.0f);
-        List<Item> it = new ArrayList<>();
-        it.add(new Item(R.drawable.blacksmith,"Chris", list));
-        it.add(new Item(R.drawable.blacksmith,"Chris", list));
-        return it;
-    }
 
     @Override
-    public void nextTrack() {
+    public void nextTrack(boolean nextItem,int position) {
+        if (nextItem) {
+            int music = items.get(position).getMusic();
+            mediaPlayer = MediaPlayer.create(getContext(),music);
+            mediaPlayer.start();
+        }
         //TODO: after the music of one item is over, the music of the next item should continue
         //Old idea : get the values of nextInline from the view holder and then if false playmusic for the next item
 //        if (!nextInLine()) {

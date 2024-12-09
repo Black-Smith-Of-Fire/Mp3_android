@@ -15,16 +15,18 @@ import java.util.List;
 public class DJAdapter extends RecyclerView.Adapter<DJViewHolder> {
 
     private List<Item> items;
+    private final DJInterface djInterface;
 
-    public DJAdapter(List<Item> items) {
+    public DJAdapter(List<Item> items, DJInterface djInterface) {
         this.items = items;
+        this.djInterface = djInterface;
     }
 
     @NonNull
     @Override
     public DJViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.dj_list, parent,false);
-        return new DJViewHolder(itemView);
+        return new DJViewHolder(itemView, djInterface);
     }
 
     @Override
@@ -32,7 +34,10 @@ public class DJAdapter extends RecyclerView.Adapter<DJViewHolder> {
         holder.imageView.setImageResource(items.get(position).getImage());
         holder.songName.setText(items.get(position).getName());
         holder.artist.setText(items.get(position).getName());
-        holder.rangeSlider.setValues(items.get(position).getValues());
+//        if (holder.nextMusic) {
+//
+//        }
+//        holder.rangeSlider.setValues(items.get(position).getValues());
     }
 
     @Override

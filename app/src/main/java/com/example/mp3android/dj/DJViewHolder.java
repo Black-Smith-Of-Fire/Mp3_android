@@ -83,29 +83,33 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         if (!user) {
             return;
         }
-        new Thread(){
-            @Override
-            public void run(){
+        else if (mediaPlayer.isPlaying()) {
+            new Thread() {
+                @Override
+                public void run() {
                     int ticksToMove = mediaPlayer.getDuration() / 100;
                     int currentPos = 100 - (mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition()) / ticksToMove;
                     List<Float> list = rangeSlider.getValues();
-                    list.set(1,(float) currentPos);
-                    Log.i("The values",list.toString());
+                    list.set(1, (float) currentPos);
+                    Log.i("The values", list.toString());
                     rangeSlider.setValues(list);
                     if (list.get(1).equals(list.get(2))) {
                         mediaPlayer.pause();
+//                        mediaPlayer.release();
                         if (djInterface != null) {
                             int pos = getAbsoluteAdapterPosition();
                             if (pos != RecyclerView.NO_POSITION) {
                                 djInterface.nextTrack(true, getAbsoluteAdapterPosition() + 1);
                             }
                         }
-                        return;
+                        return; /*Don't u dare remove this,
+                        coz u need to return as soon as the middle and the last sliders are in the same position*/
                     }
 
                     sliderValueChange(true);
-            }
-        }.start();
+                }
+            }.start();
+        }
     }
 
     public void playMusic(){

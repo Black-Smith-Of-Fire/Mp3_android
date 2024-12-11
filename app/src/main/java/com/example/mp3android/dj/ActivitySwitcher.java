@@ -22,15 +22,12 @@ public class ActivitySwitcher {
     DJInterface djInterface;
     DJItemList itemList = new DJItemList();
     List<Item> items;
-    int position = 0;
+//    int position = parent.;
 
-    public ActivitySwitcher(View itemView){
+    public ActivitySwitcher(RangeSlider rangeSlider, ImageButton play){
 
         this.djInterface = djInterface;
-//        imageView = itemView.findViewById(R.id.artistImage1);
-//        songName = itemView.findViewById(R.id.songName1);
-//        artist = itemView.findViewById(R.id.artist2);
-        rangeSlider = itemView.findViewById(R.id.slider);
+        rangeSlider = this.rangeSlider;
         play = (ImageButton) itemView.findViewById(R.id.play);
         this.mediaPlayer = mediaPlayer;
         this.items = items;

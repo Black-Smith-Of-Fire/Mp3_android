@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mp3android.Item;
 import com.example.mp3android.R;
 import com.google.android.material.slider.RangeSlider;
 
@@ -25,8 +26,10 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
     MediaPlayer mediaPlayer;
     DJInterface djInterface;
     DJItemList itemList = new DJItemList();
+    List<Item> items;
+    int position = 0;
 
-    public DJViewHolder(@NonNull View itemView, DJInterface djInterface) {
+    public DJViewHolder(@NonNull View itemView , List<Item> items, MediaPlayer mediaPlayer, DJInterface djInterface) {
         super(itemView);
 
         this.djInterface = djInterface;
@@ -35,9 +38,16 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         artist = itemView.findViewById(R.id.artist2);
         rangeSlider = itemView.findViewById(R.id.slider);
         play = (ImageButton) itemView.findViewById(R.id.play);
-        mediaPlayer = MediaPlayer.create(this.itemView.getContext(), R.raw.twistedrock);
+        this.mediaPlayer = mediaPlayer;
+        this.items = items;
 
-
+        if (items.get(getPos()).getSwitchOnMusic()) {
+            mediaPlayer.start();
+            Log.i("Mediaplayer is playing : ", "true");
+            sliderValueChange(true);
+        }else {
+            Log.i("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "false");
+        }
 
 
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener(){
@@ -96,12 +106,16 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                     if (list.get(1).equals(list.get(2))) {
                         mediaPlayer.pause();
 //                        mediaPlayer.release();
-                        if (djInterface != null) {
-                            int pos = getAbsoluteAdapterPosition();
-                            if (pos != RecyclerView.NO_POSITION) {
-                                djInterface.nextTrack(true, getAbsoluteAdapterPosition() + 1);
-                            }
-                        }
+//                        if (djInterface != null) {
+//                            int pos = getAbsoluteAdapterPosition();
+//                            if (pos != RecyclerView.NO_POSITION) {
+//                                items.get(position).setSwitchOnMusic(false);
+                                setPos(1);
+                                Log.i("Size of the item : ","" + items.size());
+                                Log.i(" and this is after its increment : ", "" + getPos());
+                                djInterface.nextTrack(getPos());
+//                            }
+//                        }
                         return; /*Don't u dare remove this,
                         coz u need to return as soon as the middle and the last sliders are in the same position*/
                     }
@@ -112,9 +126,11 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void playMusic(){
-        //TODO: after the music of one item is over, the music of the next item should continue
-        mediaPlayer.start();
+    public int getPos(){
+        return  position;
+    }
+    public void setPos(int position) {
+        this.position = position;
     }
 
     private boolean nextInline(boolean value){

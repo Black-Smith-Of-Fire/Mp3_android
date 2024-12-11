@@ -29,6 +29,7 @@ public class DJFragment extends Fragment implements DJInterface {
     DJItemList item = new DJItemList();
     boolean switchOnMusic;
     int position = 0;
+    ActivitySwitcher switcher = new ActivitySwitcher();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -36,6 +37,7 @@ public class DJFragment extends Fragment implements DJInterface {
 
         View rootView = inflater.inflate(R.layout.fragment_dj, container,false);
 
+        int position = parent.getChildAdapterPosition();
         items = item.itemList();
         recyclerView = rootView.findViewById(R.id.djRecyclerView);
 
@@ -55,14 +57,7 @@ public class DJFragment extends Fragment implements DJInterface {
 
     @Override
     public void nextTrack(int position) {
+
         item.itemList().get(position).setSwitchOnMusic(true);
-        Log.i("The boolean value of 1 is : ", "" + items.get(position).getSwitchOnMusic());
-        Log.i("We live here with track number : ","" + position);
-//        this.position = position;
-        /* New problem , this mediaPlayer in this class and the mediaPlayer in DJViewHolder are both very different,
-         and so are not affected by the other class */
-//        int music = items.get(position).getMusic();
-//        mediaPlayer = MediaPlayer.create(getContext(),music);
-//        mediaPlayer.start();
     }
 }

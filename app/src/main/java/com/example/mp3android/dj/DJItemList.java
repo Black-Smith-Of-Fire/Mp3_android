@@ -12,8 +12,9 @@ public class DJItemList {
 
     public List<Item> itemList() {
 
-        it.add(new Item(R.drawable.blacksmith,"Chris", R.raw.twistedrock,true));
-        it.add(new Item(R.drawable.blacksmith,"Paro", R.raw.paro,false));
+        it.add(new ActivitySwitcher(R.drawable.blacksmith,R.raw.twistedrock,list));
+//        it.add(new Item(R.drawable.blacksmith,"Chris", R.raw.twistedrock,true));
+//        it.add(new Item(R.drawable.blacksmith,"Paro", R.raw.paro,false));
         return it;
     }
 }

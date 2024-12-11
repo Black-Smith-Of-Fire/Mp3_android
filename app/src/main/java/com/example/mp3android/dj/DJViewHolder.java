@@ -41,14 +41,12 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         this.mediaPlayer = mediaPlayer;
         this.items = items;
 
-        if (items.get(getPos()).getSwitchOnMusic()) {
-            mediaPlayer.start();
-            Log.i("Mediaplayer is playing : ", "true");
-            sliderValueChange(true);
-        }else {
-            Log.i("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "false");
-        }
 
+//        new ActivitySwitcher(mediaPlayer);
+
+        if (mediaPlayer.isPlaying()){
+            sliderValueChange(true);
+        }
 
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener(){
             @Override
@@ -109,11 +107,11 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
 //                        if (djInterface != null) {
 //                            int pos = getAbsoluteAdapterPosition();
 //                            if (pos != RecyclerView.NO_POSITION) {
-//                                items.get(position).setSwitchOnMusic(false);
-                                setPos(1);
-                                Log.i("Size of the item : ","" + items.size());
-                                Log.i(" and this is after its increment : ", "" + getPos());
-                                djInterface.nextTrack(getPos());
+                                items.get(position).setSwitchOnMusic(false);
+//                                setPos(1);
+//                                Log.i("Size of the item : ","" + items.size());
+//                                Log.i(" and this is after its increment : ", "" + getPos());
+                                djInterface.nextTrack(1);
 //                            }
 //                        }
                         return; /*Don't u dare remove this,

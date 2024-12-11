@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ public class DJFragment extends Fragment implements DJInterface {
     RangeSlider rangeSlider;
     MediaPlayer mediaPlayer;
     DJItemList item = new DJItemList();
+    boolean switchOnMusic;
+    int position = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -38,8 +41,11 @@ public class DJFragment extends Fragment implements DJInterface {
 
         View view = inflater.inflate(R.layout.dj_list, container,false);
         rangeSlider = view.findViewById(R.id.slider);
+        mediaPlayer = MediaPlayer.create(getContext(),R.raw.twistedrock);
 
-        adapter = new DJAdapter(items,this);
+//        switchOnMusic = items.get(position).getSwitchOnMusic();
+
+        adapter = new DJAdapter(items,mediaPlayer,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -48,13 +54,15 @@ public class DJFragment extends Fragment implements DJInterface {
 
 
     @Override
-    public void nextTrack(boolean nextItem,int position) {
+    public void nextTrack(int position) {
+        item.itemList().get(position).setSwitchOnMusic(true);
+        Log.i("The boolean value of 1 is : ", "" + items.get(position).getSwitchOnMusic());
+        Log.i("We live here with track number : ","" + position);
+//        this.position = position;
         /* New problem , this mediaPlayer in this class and the mediaPlayer in DJViewHolder are both very different,
          and so are not affected by the other class */
-        if (nextItem) {
-            int music = items.get(position).getMusic();
-            mediaPlayer = MediaPlayer.create(getContext(),music);
-            mediaPlayer.start();
-        }
+//        int music = items.get(position).getMusic();
+//        mediaPlayer = MediaPlayer.create(getContext(),music);
+//        mediaPlayer.start();
     }
 }

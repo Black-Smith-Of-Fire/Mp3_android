@@ -39,6 +39,9 @@ public class DJAdapter extends RecyclerView.Adapter<DJViewHolder> {
         holder.imageView.setImageResource(items.get(position).getImage());
         holder.songName.setText(items.get(position).getName());
         holder.artist.setText(items.get(position).getName());
+//        if (items.get(position).getSwitchOnMusic()){
+//            mediaPlayer.start();
+//        }
     }
 
     @Override

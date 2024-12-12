@@ -52,7 +52,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value , boolean fromUser){
                 List <Float> list = rangeSlider.getValues();
-                Log.i("X , that is 0 : ", list.get(0).toString());
+//                Log.i("X , that is 0 : ", list.get(0).toString());
 
                 if (fromUser) {
                     sliderValueChange(false);
@@ -91,6 +91,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
         if (!user) {
             return;
         }
+
         else if (mediaPlayer.isPlaying()) {
             new Thread() {
                 @Override
@@ -117,7 +118,6 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
                         return; /*Don't u dare remove this,
                         coz u need to return as soon as the middle and the last sliders are in the same position*/
                     }
-
                     sliderValueChange(true);
                 }
             }.start();
@@ -127,6 +127,7 @@ public class DJViewHolder extends RecyclerView.ViewHolder {
     public int getPos(){
         return  position;
     }
+
     public void setPos(int position) {
         this.position = position;
     }
